@@ -3,21 +3,34 @@ package com.petShop.persistance.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 @Entity
-@Table(name="citas")
-
+@Table(name = "citas")
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_cita")
+    @Column(name = "id_cita")
     private Integer idAppointment;
 
-    @Column(name="fecha_cita")
-    private Date dateAppointment;
+    @ManyToOne
+    @JoinColumn(name = "id_mascota") //llave a foranea
+    private Pet pet;
 
+    @ManyToOne
+    @JoinColumn(name = "id_empleado") //llave a foranea
+    private Employee employee;
+
+    @Column(name = "descripcion")
+    private String description;
+
+    @Column(name = "fecha")
+    private String date;
+
+    public Integer getIdAppointment() { return idAppointment;}
+
+    public void setIdAppointment(Integer idAppointment) {
+        this.idAppointment = idAppointment;
+    }
 }
 
 

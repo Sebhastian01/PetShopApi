@@ -1,35 +1,32 @@
 package com.petShop.persistance.entity;
 
-//import lombok.Data;
 import jakarta.persistence.*;
+import lombok.Data;
 
-//@Data
-@Entity
-@Table(name="empleados")
-
+@Data // crea los getters and setters
+@Entity // es el identificador para que el sprint sepa como tratar la clase
+@Table (name = "empleados") // nombre de la tabla en la base de datos
 public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_empleado")
+    @Id // identifica la llave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //
+    @Column(name = "id_empleado")
     private Integer idEmployee;
 
-    @Column(name="nombre_propietario")
+    @Column(name = "nombre_empleado")
     private String nameEmployee;
 
-    @Column(name="apellidos_empleado")
-    private String lastNameEmployee;
+    @Column(name = "cargo")
+    private String position;
 
-    @Column(name="correo_empleado")
-    private String emailEmployee;
+    @Column(name = "telefono")
+    private String number;
 
+
+    public Integer getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(Integer idEmployee) {
+        this.idEmployee = idEmployee;
+    }
 }
-/*
-crear entidad (clases)
-citas
-productos
-proveedores
-factura de servicio
-historia medica
-veteriano
-los demas que considere...
- */

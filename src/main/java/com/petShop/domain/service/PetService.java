@@ -1,6 +1,5 @@
 package com.petShop.domain.service;
-
-import com.petShop.domain.PetDomain;
+import com.petShop.domain.dto.PetDTO;
 import com.petShop.domain.repository.PetDomainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,30 +10,42 @@ import java.util.Optional;
 @Service
 public class PetService {
     @Autowired
-    private PetDomainRepository petDomainRepository;
+    private PetDomainRepository petDomainRepository; //llamar a petrepositoriy
 
-    public List<PetDomain> getAll() {
+
+    public Iterable<PetDTO> getAll() {
         return petDomainRepository.getAll();
     }
 
-    public Optional<PetDomain> getPetById(int id) {
-        return petDomainRepository.getPetById(id);
-    }
-/*
-    public Optional<List<PetDomain>> getById(int id) {
-        return petDomainRepository.findById(id);
+    public  Optional<PetDTO> getPetById(int id) {
+        return petDomainRepository.getPetById( id);
     }
 
-    public PetDomain save(PetDomain petDomain) {
-        return petDomainRepository.save(petDomain);
+    public PetDTO save(PetDTO petDTO){
+        return petDomainRepository.save(petDTO);
     }
 
-    public boolean delete(int id) {
-        return getId(id).map(pet -> {
-            petDomainRepository.delete(id);
-            return true;
-        }).orElse(false);
+    public Optional<List<PetDTO>> getByName(String name) {
+
+        return petDomainRepository.getByName(name);
     }
 
- */
+    public PetDTO update(PetDTO petDTO){
+        return petDomainRepository.update(petDTO);
+    }
+
+    public void delete(int id){
+        petDomainRepository.delete(id);
+    }
+
+    public boolean existsPet(int id) {
+
+        return petDomainRepository.existsPet(id);
+    }
+
+    public long countAll() {
+
+        return petDomainRepository.countAll();
+    }
+
 }
